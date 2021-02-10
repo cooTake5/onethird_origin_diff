@@ -1,0 +1,959 @@
+*x:replace
+*f:module/utility.basic.php
+
+*c:2
+en:$html['information'][]='Draft';
+jp:$html['information'][]='下書';
+
+jp:exit_proc(403, "このページは公開されていません");
+en:exit_proc(403, "This page is not published");
+
+jp:$html['information'][]='このページはページ単独で閲覧できません';
+en:$html['information'][]='This page can not be viewed on single mode';
+
+jp:$m = "テンプレートが見つかりません";
+en:$m = "Template files is missing";
+
+*c:2
+jp:return "引数が不正です";
+en:return "The argument is invalid";
+
+jp:return "関数が見つかりません({$arg_list[0]})";
+en:return "(Function not found {$arg_list[0]})";
+
+jp:$a = 'エラーが発生しました、ページ内容を表示できません、編集画面に戻ってください(1)<br />';
+en:$a = 'Can not be displayed error occurred, the page content, please return to the edit mode(1)<br />';
+
+jp:$opt['caption'] = '編集';
+en:$opt['caption'] = 'edit';
+
+jp:title='追加' >{$ut->icon('add')}</span>
+en:title='Add' >{$ut->icon('add')}</span>
+
+*c:2
+jp:title='プロパティ' >{$ut->icon('setting')}</span>
+en:title='Property' >{$ut->icon('setting')}</span>
+
+jp:exit_proc(0,"セッションが不正です、再ログインしてください<br /><a href='{$config['site_url']}logout.php'>ログアウトして、トップに戻る</a>");
+en:exit_proc(0,"Session is invalid, please re-login.<br /><a href='{$config['site_url']}logout.php'>Log out and back to the top.</a>");
+
+jp:return 'このページは現在メンテナンス中です';
+en:return 'This page is currently under maintenance';
+
+jp:<p class='title'>システムログイン</p>
+en:<p class='title'>System Login</p>
+
+
+jp:ユーザーID / メールアドレス
+en:User ID / Mail address
+
+jp:<dt>パスワード</dt>
+en:<dt>Password</dt>
+
+jp:value='ログイン' onclick='ot.do_login()' />
+en:value='Login' onclick='ot.do_login()' />
+
+
+jp:value='戻る' onclick='location.href="{$params['circle']['url']}"' />
+en:value='Back' onclick='location.href="{$params['circle']['url']}"' />
+
+jp:&forget=1'>パスワード紛失</a>
+en:forget=true'>Lost password</a>
+
+jp:value='閉じる' onclick='ot.close_dialog(this)' />
+en:value='Close' onclick='ot.close_dialog(this)' />
+
+jp:return event.returnValue = ' データが保存されていません ';
+en:return event.returnValue = ' Data has not been saved ';
+
+jp:{$ut->link('list')}'>ページ一覧</a>";
+en:{$ut->link('list')}'>Page List</a>";
+
+jp:javascript:void(ot.add_page($p_add_page,true))'>ページ追加</a>";
+en:javascript:void(ot.add_page($p_add_page,true))'>Add Page</a>";
+
+jp:javascript:void(ot.page_setting($p_page))' >ページプロパティ</a>";
+en:javascript:void(ot.page_setting($p_page))' >Page Property</a>";
+
+en:{$ut->link($params['page']['id'],'&:mode=edit')}'>Edit Page</a>";
+jp:{$ut->link($params['page']['id'],'&:mode=edit')}'>ページ編集</a>";
+
+jp:{$p_circle}'>メンバー一覧</a>";
+en:{$p_circle}'>Member list</a>";
+
+jp:{$config['site_url']}{$config['admin_dir']}/restore.php?circle={$p_circle}'>バックアップツール</a>";
+en:{$config['site_url']}{$config['admin_dir']}/restore.php?circle={$p_circle}'>Backup Tool</a>";
+
+jp:if ( confirm("lessコンパイルモードをクリアします。実行しますか？") ){
+en:if ( confirm("Less compiled mode will clear. Do you want to run?") ){
+
+jp:if ( confirm("新規サイトを作成します。実行しますか？") ){
+en:if ( confirm("New site is created. Do you want to run?") ){
+
+
+jp:if ( confirm("サイトを削除します。実行しますか？") ){
+en:if ( confirm("Site will be deleted. Do you want to run?") ){
+
+
+jp:alert('サイトを削除しました');
+en:alert('Site has been removed');
+
+jp:alert(v[1]+'.less'+' が見つかりません');
+en:alert(v[1]+'.less'+' can not be found');
+
+jp:create_account=true'>新規アカウント作成</a>
+en:create_account=true'>Create new account</a>
+
+*f:module/edit.std.php
+*c:3
+jp:value='戻る'
+en:value='back'
+
+jp:value='保存'
+en:value='save'
+
+jp:value='下書'
+en:value='draft'
+
+en:value='image'
+jp:value='画像'
+
+jp:alert('保存しました');
+en:alert('Saved');
+
+jp:alert('保存できませんでした');
+en:alert('Save failed');
+
+*f:admin/member.php
+
+*c:2
+en:Create new account
+jp:新規アカウント作成
+
+en:value='Create'
+jp:value='作成'
+
+jp:alert('ユーザーを追加できません');
+en:alert('Could not add user');
+
+*c:2
+en:>Access rights<
+jp:>アクセス権限<
+
+
+jp:>管理者（サイトのすべての操作が可能です）</label></li>
+en:>administrator</label></li>
+
+jp:>編集者（ページ作成/編集、データベースへのデータ追加が行えます）</label></li>
+en:>editor</label></li>
+
+en:value='Update'
+jp:value='更新'
+
+*f:module/utility.edit.php
+
+en:"Total "+data['count']+" page(s) will be purge. \\nAre you sure you want to delete this?"
+jp:"合計 "+data['count']+" ページが削除されます \\n実行しますか?"
+
+en:if ( !confirm("Are you sure you want to delete this?") ) {
+jp:if ( !confirm("消去しますか?") ) {
+
+en:<p class='title'>Property
+jp:<p class='title'>プロパティ
+
+en:id='p_dis_mod_date' checked />Not rewrite date.</label></li>
+jp:id='p_dis_mod_date' checked />作成日時を書き換えない</label></li>
+
+en:"<li ><label><input type='checkbox' id='p_hide_title' $opt2 />Hide title.</label></li>";
+jp:"<li ><label><input type='checkbox' id='p_hide_title' $opt2 />タイトルを表示しない</label></li>";
+
+en: />Publish</label></li>
+jp: />公開する</label></li>
+
+*c:3
+en:value='Update'
+jp:value='更新'
+
+*c:3
+en:value='Remove'
+jp:value='削除'
+
+*c:2
+en:value='Cancel'
+jp:value='キャンセル'
+
+en:'Failure to create a page.'
+jp:'ページを作成できませんでした'
+
+en:\$('#op_name').text('Add page');
+jp:\$('#op_name').text('ページ追加');
+
+en:\$('#op_name').text('Add Lower page');
+jp:\$('#op_name').text('下層ページ追加');
+
+en:\$('#op_name').text('Add block');
+jp:\$('#op_name').text('ブロック追加');
+
+*c:2
+en:<td>Title</td>
+jp:<td>タイトル</td>
+
+en:<input type='button' value='Create' class='onethird-button default' onclick='ot.make_page()'  />
+jp:<input type='button' value='作成' class='onethird-button default' onclick='ot.make_page()'  />
+
+jp:alert('バックアップしました');
+en:alert('Backup has completed');
+
+jp:alert('バックアップできませんでした');
+en:alert('Backup failed');
+
+en:'child-page' >Normal page</option>
+jp:'child-page' >通常ページ</option>
+
+en:'inner-page' >Inner page</option>
+jp:'inner-page' >インナーページ</option>
+
+*f:module/utility.php
+
+jp:$mess = 'ページがみつかりません - 404';
+en:$mess = 'Page not found - 404';
+
+jp:$mess = '閲覧権限がありません - 403';
+en:$mess = 'You do not have viewing rights - 403';
+
+jp:$mess = 'ページがみつかりません (200)';
+en:$mess = 'Page not found (200)';
+
+jp:$mess = 'ページは移動しました (301)';
+en:$mess = 'Page has moved (301)';
+
+jp:$mess = 'ページがみつかりません (404)';
+en:$mess = 'Page not found (404)';
+
+jp:$a = 'エラーが発生しました、ページ内容を表示できません、編集画面に戻ってください(2)<br />';
+en:$a = 'Can not be displayed error occurred, the page content, please return to the edit screen(2)<br />';
+
+jp:$a .= "<a href='{$ut->link($params['page']['id'],'mode:edit')}'>編集</a>";
+en:$a .= "<a href='{$ut->link($params['page']['id'],'mode:edit')}'>Edit</a>";
+
+
+*f:module/utility.std.php
+
+en:if (!confirm('Are you sure you want to delete the data?')) {
+jp:if (!confirm('データを削除しますか?')) {
+
+*c:2
+en:<p class='title'>Edit</p>
+jp:<p class='title'>編集</p>
+
+*c:3
+en:value='Update'
+jp:value='更新'
+
+*c:3
+en:value='Remove'
+jp:value='削除'
+
+*c:2
+en:value='Image'
+jp:value='画像挿入'
+
+en:$title = 'Select File';
+jp:$title = 'ファイル選択';
+
+en:<span>Upload</span>
+jp:<span>アップロード</span>
+
+en:!confirm("remove data.\\n do you want execute?")) {
+jp:!confirm("データを削除します\\n実行しますか？")) {
+
+en:alert("Failed to remove.");
+jp:alert("削除できませんでした");
+
+
+*f:admin/account.php
+
+jp:$r['mess'] = "ログイン失敗回数が一定数を超えました\nセキュリティ上しばらくログイン出来ません\n３時間以上時間を開けるか、パスワードの紛失手続きをしてください";
+en:$r['mess'] = "Security error\n\nPlease log in again to make room for three hours or more time, or Please make a procedure Lost Password.";
+
+jp:$r['mess'] = 'ユーザーIDが存在しないか、パスワードが違います';
+en:$r['mess'] = 'User ID does not exist, or the password is incorrect.';
+
+jp:$m = "パスワード紛失モードでログインしました<br />パスワードを変更してください";
+en:$m = "You are logged in as Lost Password Mode <br /> Please change the password";
+
+jp:$m = "アカウントを作成しました";
+en:$m = "Account created";
+
+jp:'トークンの有効期限が切れました'
+en:'Expiration date of the token has expired.'
+
+jp:$r['mess'] = 'このメールアドレスはすでに登録されています';
+en:$r['mess'] = 'This email address is already registered.';
+
+jp:$r['mess'] = "{$name}はご利用いただけません";
+en:$r['mess'] = "{$name}is not available.";
+
+jp:$r['mess'] = "{$nickname}はご利用いただけません";
+en:$r['mess'] = "{$nickname}is not available.";
+
+jp:$params['breadcrumb'][] = array('link'=>"{$params['safe_request']}", 'text'=>'アカウント設定');
+en:$params['breadcrumb'][] = array('link'=>"{$params['safe_request']}", 'text'=>'Account settings');
+
+jp:return 'ログインデータが不正です<br />ログアウトしてください';
+en:return 'Invalid login data<br />Please sign out';
+
+jp:[0] = 'アカウント情報'
+en:[0] = 'Account Setting'
+
+jp:[1] = 'オプション設定'
+en:[1] = 'Option Setting'
+
+en:<td>Mail address</td>
+jp:<td>メールアドレス</td>
+
+jp:$buff.="<br /><span style='color:red;'>※ パスワードを忘れた時のためにメールアドレスが必要です</span>";
+en:$buff.="<br /><span style='color:red;'>- You need email address for when you forget your password.</span>";
+
+jp:$buff.=("<p>確認パスワード <input type='text' name='c_code' id='c_code' /></p>");
+en:$buff.=("<p>Confirm Password <input type='text' name='c_code' id='c_code' /></p>");
+
+jp:<td>ユーザーID</td>
+en:<td>User ID</td>
+
+jp:$error_mess = "<div class='help-inline' style='color:red;'>※ ユーザーIDが指定されていません</div>";
+en:$error_mess = "<div class='help-inline' style='color:red;'>- Enter User ID.</div>";
+
+jp:<td>ニックネーム</td>
+en:<td>Nick Name</td>
+
+jp:$error_mess = "<div class='help-inline' style='color:red;'>パスワードが指定されていません</div>";
+en:$error_mess = "<div class='help-inline' style='color:red;'>- Enter Password.</div>";
+
+jp:<td >パスワード</td>
+en:<td >Password</td>
+
+*c:2
+jp:value='更新'
+en:value='Update'
+
+*c:2
+jp:alert('正常に暗号化通信出来ません
+en:alert('Failed encrypted communication.
+
+jp:{$config['title']}　登録　確認メール
+en:{$config['title']} Registration confirmation email
+
+en:- Registration confirmation"
+jp:- 登録確認"
+
+en:We accept the acount-registration request.
+jp:アカウント設定リクエストを受け付けました
+
+en:Please click the following URL
+jp:以下のURLをクリックしてください
+
+en:- This url will expire in 30 minutes.
+jp:- このURLは30分で期限切れとなります
+
+
+*f:admin/restore.php
+
+en:if (confirm('Uninstall plugin.\\n do you want execute?')) {
+jp:if (confirm('プラグインをアンインストールします\\n 実行しますか?')) {
+
+
+*c:6
+en:if (confirm("do you want execute?")) {
+jp:if (confirm("実行しますか?")) {
+
+*c:2
+en:$r['mess'] = "Current version is too old, Please update.";
+jp:$r['mess'] = "バージョンが古くなっています、バージョンアップしてください";
+
+*c:2
+en:$r['mess'] = 'backup done';
+jp:$r['mess'] = 'バックアップ終了しました';
+
+*c:3
+en:alert('successfully.');
+jp:alert('成功しました');
+
+en:alert('Uninstall was successful.');
+jp:alert('アンインストールに成功しました');
+
+
+jp:alert('バックアップしました');
+en:alert('Backup has completed');
+
+jp:alert('バックアップできませんでした');
+en:alert('Backup failed');
+
+en:$params['breadcrumb'][] = array( 'link'=>"$u", 'text'=>'backup tool' );
+jp:$params['breadcrumb'][] = array( 'link'=>"$u", 'text'=>'バックアップツール' );
+
+jp:$html['alert'][] = 'アップロードに失敗しました(1)';
+en:$html['alert'][] = 'Failed to upload (1)';
+
+jp:$html['alert'][] = 'アップロードに失敗しました';
+en:$html['alert'][] = 'upload failed';
+
+*c:2
+jp:$html['alert'][] = 'ファイルをアップロード出来ませんでした
+en:$html['alert'][] = 'upload failed.
+
+
+jp:value='アップロード'
+en:value='Upload'
+
+jp:<input type='button' onclick='restore_dbase("$f")' value='データリストア' class='onethird-button mini' />
+en:<input type='button' onclick='restore_dbase("$f")' value='Data restore' class='onethird-button mini' />
+
+*c:4
+jp:value='上書'
+en:value='Overwrite'
+
+*c:8
+jp:value='コメント'
+en:value='Comment'
+
+jp:value='閲覧'
+en:value='View'
+
+*c:3
+jp:value='インストール'
+en:value='Install'
+
+*c:2
+jp:value='アンインストール'
+en:value='Uninstall'
+
+*c:2
+jp:value='インポート' 
+en:value='Import'
+
+jp:value='差分バックアップ' 
+en:value='diff-backup'
+
+*c:2
+jp:alert('読み込みできませんでした');
+en:alert('Failed to load');
+
+
+jp:if (confirm('全サイトのデータは以前の状態に戻ります\\nバックアップデータをリストアしますか？')) {
+en:if (confirm('Return to the previous state data for all sites\\n Do you want to restore the backup data?')) {
+
+jp:if (confirm('全サイトのデータは以前の状態に戻ります\\nバックアップデータをリストアしますか？')) {
+en:if (confirm('Return to the previous state data for all sites\\n Do you want to restore the backup data?')) {
+
+*c:4
+jp:alert('更新しました');
+en:alert('Updated.');
+
+jp:if (confirm('データは書き換えられます\\n実行しますか？')) {
+en:if (confirm('Do you want execute?')) {
+
+jp:alert('インポートしました');
+en:alert('Import was successful.');
+
+jp:alert('インポートできませんでした');
+en:alert('Import failure.');
+
+jp:if (confirm("全データを消去します\\nこの操作は元に戻せませんすべてのデータが消去されます、実行しますか？")) {
+en:if (confirm("All data will be erased \\n This operation can not be undone all data will be erased, do you want execute?")) {
+
+en:<input type='button' onclick='restore_program("$f","system")' value='Update' class='onethird-button mini' />
+jp:<input type='button' onclick='restore_program("$f","system")' value='アップデート' class='onethird-button mini' />
+
+*c:2
+en:if (!confirm('Caution : Script includes are found, Are you sure you want to execute this?')) {
+jp:if (!confirm('注意 : 組み込みスクリプトが見つかりました, 実行しますか？')) {
+
+*f:admin/online.php
+en:if (!confirm('Caution : Script includes are found, Are you sure you want to execute this?')) {
+jp:if (!confirm('注意 : 組み込みスクリプトが見つかりました, 実行しますか？')) {
+
+en:alert('Installation was successful.');
+jp:alert('インストールしました');
+
+en:alert('Install error.');
+jp:alert('インストールエラー');
+
+*c:2
+en:alert('download failed.');
+jp:alert('ダウンロードエラー');
+
+en:alert('Failed to load');
+jp:alert('ロードエラー');
+
+en:alert('success.');
+jp:alert('成功しました');
+
+en:alert('failed.');
+jp:alert('失敗しました');
+
+*f:admin/setting.php
+
+jp:exit_proc(403, '管理権限がありません');
+en:exit_proc(403, 'Need administrator rights');
+
+jp:return '管理権限がありません';
+en:return 'Need administrator rights';
+
+jp:$html['alert'][] = "サイト名($name)は既に使用しています、他の名前を指定してください";
+en:$html['alert'][] = "Please specify ($name) has already used the site name, the name of the other.";
+
+jp:$html['alert'][]="サイトID($cid)は既に使用しています、他の名前を指定してください";
+en:$html['alert'][]="Please specify ($cid) is already in use, the name of the other site ID";
+
+jp:<td>サイト名</td>
+en:<td>Site Name</td>
+
+jp:<td>サイトID</td>
+en:<td>Site ID</td>
+
+jp:<td>公開オプション
+en:<td>Publishing Options
+
+jp:name='p_join' value='2' $join_flag2 >誰でも自由に閲覧できる (公開サイト)</label></li>
+en:name='p_join' value='2' $join_flag2 > Can be viewed by anyone (public site)</label></li>
+
+jp:name='p_join' value='0' $join_flag0 >登録ユーザー以外閲覧できない（登録制サイト）</label></li>
+en:name='p_join' value='0' $join_flag0 > Non-registered users can not be viewed</label></li>
+
+jp:<td>状態</td>
+en:<td>Site status</td>
+
+jp:name='p_public' value='0' $public_flag0 > 公開中</label></li>
+en:name='p_public' value='0' $public_flag0 > Public</label></li>
+
+jp:name='p_public' value='2' $public_flag2 > メンテナンス中</label></li>
+en:name='p_public' value='2' $public_flag2 > Under Maintenance</label></li>
+
+*c:5
+jp:button">更新</button>
+en:button">Update</button>
+
+jp:<td>サイトナンバー</td>
+en:<td>Site Number</td>
+
+jp:<td>トップページ</td>
+en:<td>Top Page Number</td>
+
+jp:<td>トップページテンプレート</td>
+en:<td>Top Page Template</td>
+
+jp:<td>タグセレクター</td>
+en:<td>TAG selector</td>
+
+jp:<td>オプション</td>
+en:<td>Option</td>
+
+jp:id='p_hide_nav' name='p_hide_nav' $hide_nav  />システムメニューを隠す</label></li>
+en:id='p_hide_nav' name='p_hide_nav' $hide_nav  />Hide System Menu</label></li>
+
+jp:id='p_hide_login' name='p_hide_login' $hide_login  />ログイン機能を隠す</label></li>
+en:id='p_hide_login' name='p_hide_login' $hide_login  />Hide the login function</label></li>
+
+jp:id='p_pv_logging' name='p_pv_logging' $pv_logging  />全ページでPVカウントする</label></li>
+en:id='p_pv_logging' name='p_pv_logging' $pv_logging  />The PV count on every page</label></li>
+
+en:'p_folder_systag' name='p_folder_systag' $folder_systag  />Use folder systag option</label></li>
+jp:'p_folder_systag' name='p_folder_systag' $folder_systag  />folder systag オプションを使う</label></li>
+
+jp:alert('デフォルトサイトのサイト番号を変更しました、config.php内の default_circle値を{$p_sitenum}に変更してください');
+en:alert('Default Site number has been changed , Please change the value to {$p_sitenum} default_circle in config.php.');
+
+jp:alert('サイト番号を変更しました、トップページに移動します');
+en:alert('Site number has been changed, move the home page');
+
+*c:2
+jp:alert("アイテムを選択してください");
+en:alert("Please select an item.");
+
+jp:<td>ページエラー</td>
+en:<td>Page error</td>
+
+jp:$tmp[] = array(0, 'トップ表示');
+en:$tmp[] = array(0, 'Display top');
+
+jp:$tmp[] = array(3, '301 リダイレクト');
+en:$tmp[] = array(3, '301 redirect');
+
+jp:<td>URLエイリアス</td>
+en:<td>URL alias</td>
+
+jp:<td>メンテナンス表示</td>
+en:<td>The maintenance view</td>
+
+jp:<td>セキュリティオプション</td>
+en:<td>Security Options</td>
+
+jp:$allow_upload  />1.一般ユーザーのアップローダー利用を許可する</label></li>
+en:$allow_upload  />1.General users authorized to use uploader</label></li>
+
+jp:$upload_nonfilter  />2.アップロード可能フィルタを使用しない</label></li>
+en:$upload_nonfilter  />2.Do not use a filter that can be uploaded</label></li>
+
+jp:$upload_plugin  />3.アップローダーでpluginフォルダを表示する</label></li>
+en:$upload_plugin  />3.Displays the plugin folder uploader</label></li>
+
+en:name='p_upload_site' $upload_site  />4.Allow uloader to change system files</label></li>
+jp:name='p_upload_site' $upload_site  />4.アップローダーのシステムファイル書き換えを許可する</label></li>
+
+jp:$mult_login  />5.複数PCからのログインを許可する</label></li>
+en:$mult_login  />5.Authorized to log in from more than one PC</label></li>
+
+jp:$https_force  />6.管理画面は全てHTTPSで通信する (要site_ssl設定) </label></li>
+en:$https_force  />6.HTTPS to communicate during login (set site_ssl required) </label></li>
+
+jp:<td>ログインオプション</td>
+en:<td>Login Option</td>
+
+jp:$dis_newacc  />10.新規アカウント作成を禁止する</label></li>
+en:$dis_newacc  />10.prohibition to create a new account</label></li>
+
+jp:$login_write  />11.ログインユーザーを全てログに残す</label></li>
+en:$login_write  />11.Leave all of the logged-in user to log</label></li>
+
+jp:$login_all  />12.ログイン記録を全て管理者に送信する</label></li>
+en:$login_all  />12.Be sent to the administrator login recording all</label></li>
+
+jp:$notsave_cookie  />13.クッキーを再ログインに使わない</label></li>
+en:$notsave_cookie  />13.Prohibition re-login cookie</label></li>
+
+jp:$use_loginip  />14.クッキーにIPアドレスを記録する</label></li>
+en:$use_loginip  />14.Record the IP address in the cookie</label></li>
+
+jp:$login_alert  />15.アカウントロックをお知らせする</label></li>
+en:$login_alert  />15.To inform the account lock</label></li>
+
+
+*f:plugin/smap_cdn.php
+
+jp:onethird-button mini'>マーカーの編集</a>
+en:onethird-button mini'>Edit marker</a>
+
+jp:[ 大きい地図を開く ]
+en:[ Open big map ]
+
+jp:<td>マップタイトル</td>
+en:<td>Map title</td>
+
+jp:<td>マップサイズ(x,y)</td>
+en:<td>Map size(x,y)</td>
+
+jp:<td>マップ中央の座標</td>
+en:<td>The center of the map</td>
+
+jp:<td>マップマーカーの座標</td>
+en:<td>The map marker</td>
+
+jp:<td>ズーム</td>
+en:<td>Zoom</td>
+
+jp:value='キャンセル' onclick='ot.close_dialog(this)' />
+en:value='Cancel' onclick='ot.close_dialog(this)' />
+
+*f:plugin/pagelist.php
+
+en:onethird-button mini' >Repair broken links</a>
+jp:onethird-button mini' >リンク切れの補修</a>
+
+en:return "Please do not find the page, reset the top page";
+jp:return "ページが見つかりません、トップページの再設定を行なってください";
+
+en:'>Page List</a>" );
+jp:'>ページ一覧</a>" );
+
+en:if (confirm("Perform the repair check / broken links, do you want execute?")) {
+jp:if (confirm("リンク切れのチェック/補修を行います\\n処理に時間が掛かることがります、実行しますか？")) {
+
+en:alert(data['count']+'Link was repaired.');
+jp:alert(data['count']+'件のリンクを修正しました');
+
+en:alert('no corresponding link');
+jp:alert('該当リンクはありません');
+
+en:alert('Repair failed');
+jp:alert('補修できませんでした');
+
+en:After Data changed, please refresh display.
+jp:データ変更後は画面を再表示してください
+
+en:alert('Error or Did not change the data');
+jp:alert('修正エラーまたは、データは変更されませんでした');
+
+en:value='Update' class='onethird-button' onclick='chg_data_id(this)' />
+jp:value='変更' class='onethird-button' onclick='chg_data_id(this)' />
+
+en:value='Remove' class='onethird-button' onclick='remove_data_id(this)' />
+jp:value='削除' class='onethird-button' onclick='remove_data_id(this)' />
+
+*f:plugin/plugin.php
+
+en:, 'title' => "Page list"
+jp:, 'title' => "ページ一覧"
+
+en:, 'title' => "Sitemap"
+jp:, 'title' => "サイトマップ"
+
+en:, 'title' => "Login"
+jp:, 'title' => "ログイン"
+
+en:, 'title' => "Map"
+jp:, 'title' => "地図"
+
+en:, 'title' => "Topic page"
+jp:, 'title' => "トピックページ"
+
+en:, 'title' => "Contact form"
+jp:, 'title' => "お問い合わせフォーム"
+
+en:, 'title' => "BBS"
+jp:, 'title' => "掲示板"
+
+en:, 'title' => "Page folder"
+jp:, 'title' => "ページフォルダー"
+
+en:, 'title' => "Visitor IP"
+jp:, 'title' => "訪問者IP"
+
+en:, 'title' => "Vote"
+jp:, 'title' => "投票"
+
+en:, 'title' => "Search"
+jp:, 'title' => "検索"
+
+en:, 'title' => "Uploader"
+jp:, 'title' => "アップローダー"
+
+en:, 'title' => "File Attach"
+jp:, 'title' => "ファイル添付"
+
+
+*f:plugin/uploader.php
+
+en:<td>Save Folder Name</td>
+jp:<td>保存先フォルダ名</td>
+
+en:'0'=>'Hidden'
+jp:'0'=>'非公開'
+
+en:, '1'=>'Public'
+jp:, '1'=>'公開'
+
+en:, '2'=>'Login user'
+jp:, '2'=>'ログインユーザー'
+
+en:, '3'=>'One Time'
+jp:, '3'=>'ワンタイム'
+
+en:, '99'=>'Delete'
+jp:, '99'=>'削除'
+
+*f:install.php
+
+*c:2
+en:value='Back'
+jp:value='戻る'
+
+en:value='Start installation&raquo;'
+jp:value='インストール開始 &raquo;'
+
+en:value='Start OneThird CMS'
+jp:value='OneThird CMSを開始する'
+
+*c:2
+en:value='Install (
+jp:value='インストール (
+
+en:After installation, please delete the installation file (install.php, language.php)
+jp:インストール後、インストールファイル(install.php, language.php)は削除してください
+
+en:value='create config.php'
+jp:value='config.php作成'
+
+en:<h2>How to Find the Login link?</h2>
+jp:<h2>ログインの仕方</h2>
+
+en:<p>Please add /login to the end of your site URL.</p>
+jp:<p>インストールURLに /login をつけて開いてください</p>
+
+en:<h2>How to use OneThird CMS?</h2>
+jp:<h2>OnThird CMSの使い方</h2>
+
+en:<p>Please visit our website.</p>
+jp:<p>公式サイトから、ファーストステップガイドをダウンロードしてください</p>
+
+en:<p>For information such as release, bug reports, requests, You can found it in the Facebook page.</p>
+jp:<p>リリース情報やバグ情報は公式ページか、facebookページを参照してください</p>
+
+
+*f:plugin/login.php
+
+jp:<p class='title'>パスワード、メールアドレス紛失</p>
+en:<p class='title'>Password, lost e-mail address</p>
+
+jp:<p>ハンドルネームまたはメールアドレスを入力して送信ボタンを押してください</p>
+en:<p>Please click the submit button to enter your e-mail address or display name.</p>
+
+jp:<p>登録されたメールアドレスにパスワードリセットメールが届きます</p>
+en:<p>Password reset email will be sent to your e-mail address registered.</p>
+
+jp:<p>メールアドレスor ハンドルネーム</p>
+en:<p>Nickname or e-mail address</p>
+
+jp:<input type='button' value='送信' class='onethird-button' onclick='do_forget_rq()' />
+en:<input type='button' value='Submit' class='onethird-button' onclick='do_forget_rq()' />
+
+jp:alert('登録メールアドレス宛てにログイン用URLを送りました\\n３０分以内にメールを確認してください');
+en:alert('I sent the URL for the login to the email address registered.\\nPlease check your email within 30 minutes.');
+
+jp:<p class='title'>新規アカウント作成</p>
+en:<p class='title'>Create new account</p>
+
+jp:<td>パスワード</td>
+en:<td>Password</td>
+
+en:<td>Mail address</td>
+jp:<td>メールアドレス</td>
+
+jp:メールアドレスを書いて送信ボタンを押してください<br />
+en:Please click the submit button to write the e-mail address.<br />
+
+jp:指定されたメールアドレスにメールが届きますので、メールに書いてあるURLをクリックすると登録完了となります
+en:And complete the registration e-mail will arrive to the email address that you specify, when you click the URL is written in the mail.
+
+jp:alert('登録メールが送信されました\\n３０分以内にメールを確認してください');
+en:alert('Email has been sent\\nPlease check your email within 30 minutes.');
+
+*f:plugin/bbs2.php
+
+en:arg['write_btn_caption'] = '- Write a Comment';
+jp:arg['write_btn_caption'] = '- コメントを書く';
+
+en:arg['more_btn_caption'] = '- View more comments';
+jp:arg['more_btn_caption'] = '- 以前のコメント';
+
+*c:2
+en:'Are you sure you want to delete this?'
+jp:'削除しますか?'
+
+*f:plugin/page_folder.php
+
+en:value='Add page'
+jp:value='ページ追加'
+
+en:value='Add folder'
+jp:value='フォルダ追加'
+
+en:Allow general users the rights to add data.
+jp:全てのユーザーがデータ追加できる
+
+en:Hide add button
+jp:Addボタンを隠す
+
+*f:plugin/search.php
+
+en:value='search'
+jp:value='検索'
+
+en:'<h1>Search results</h1>';
+jp:'<h1>検索結果</h1>';
+
+en:'<p>- The search string is too short.</p>'
+jp:'<p>- 検索キーワードが短すぎます</p>'
+
+
+*f:plugin/contact.php
+
+jp:"<p class='must_alert'>※必須入力項目です</p>"
+en:"<p class='must_alert'>- must input</p>"
+
+jp:if (confirm('メールアドレスに間違いがないことをご確認ください \\n送信しますか?')) {
+en:if (confirm('Please confirm e-mail address. \\nDo you want to send ?')) {
+
+jp:>お名前</span>
+en:>Your name</span>
+
+jp:>送信時メッセージ</a>
+en:>Sending messages</a>
+
+jp:>メール</span>
+en:>Your email</span>
+
+jp:>電話</span>
+en:>Telephone</span>
+
+jp:>性別</span>
+en:>Gender</span>
+
+jp:>男性</label>
+en:>Man</label>
+
+jp:>女性</label>
+en:>Woman</label>
+
+jp:>内容</span>
+en:>Message</span>
+
+jp:>その他</span>
+en:>Other</span>
+
+jp:>メールマガジンを希望する
+en:>Mail magazine subscription
+
+jp:<td>送信先メールアドレス</td>
+en:<td>Destination mail address</td>
+
+jp:value='内容を確認して送信する &raquo;' />
+en:value='Next &raquo;' />
+
+jp:title='項目を上に移動'
+en:title='move up'
+
+jp:title='項目を下に移動'
+en:title='move down'
+
+jp:title='項目をコピー' 
+en:title='copy' 
+
+jp:title='項目を削除' 
+en:title='remove' 
+
+jp:value='修正する
+en:value='Back
+
+jp:value='送信する
+en:value='Send
+
+en:<h1>Send done</h1>
+jp:<h1>お問い合わせありがとうございました</h1>
+
+en:Receipt number : 
+jp:受付番号 : 
+
+en:Transmission was done.
+jp:内容確認後、ご連絡いたしますので今しばらくお待ちください
+
+en:$mail_ar['subject'] = "Confirmation of inquiry -
+jp:$mail_ar['subject'] = "お問い合わせ内容 -
+
+en:Thank you for your inquiry.
+jp:お問い合わせありがとうございます
+
+en:Your POST as follows:
+jp:以下の内容で受け付けました
+
+en:<h1>System Error</h1>
+jp:<h1>システムエラー</h1>
+
+en:Sorry, System Error has occurred.
+jp:システムエラーが発生しました
+
+en:Please try again from the beginning.
+jp:お手数ですが、もう一度最初からやり直してください
+
+
+

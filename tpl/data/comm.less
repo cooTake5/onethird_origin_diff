@@ -1,0 +1,127 @@
+@Radius: 6px;
+
+
+.box-shadow(@shadow: 0 1px 3px rgba(0,0,0,.25)) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+.border-radius(@radius: 5px) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Transitions
+.transition(@transition) {
+	-webkit-transition: @transition;
+	   -moz-transition: @transition;
+ 	    -ms-transition: @transition;
+	     -o-transition: @transition;
+	        transition: @transition;
+}
+
+.onethird-information {
+	z-index:159999;
+	position: fixed;
+	left:48px;
+	top:0;
+	div {
+		padding:8px 10px 8px 10px;
+		.border-radius(@Radius);
+		border: 3px solid #FC6500;
+		color:#FC6500;
+		margin-top:5px;
+		background-color: #EAEE80;
+  	font-size:12px;
+	}
+	opacity:.5;
+	&:hover{opacity:.95}
+	cursor:pointer;
+}
+
+.onethird-alert, .onethird-waring  {
+	padding:5px 10px 5px 10px;
+	.border-radius(@Radius);
+	color:#050505;
+	margin-top:5px;
+	background-color: #FCFCFC;
+	border: 10px solid #AEAEAE;
+	line-height: 150%;
+	padding: 20px;
+	font-size: 15px;
+	input {
+		margin: 16px auto 0 auto;
+	}
+}
+
+.onethird-waring {
+	border: 3px solid #AEAEAE;
+	position: fixed;
+	top:50px;
+	z-index:159999;
+}
+
+.onethird-dialog {
+	font-family: 'Muli','ヒラギノ角ゴ Pro W3','Meiryo','Helvetica','Verdana';
+	font-size:14px;
+	text-align: left;
+	display:none;
+	position:absolute;
+	background-color:#fff;
+	color:#000;
+	text-shadow:none;
+	a, a:link, a:visited {
+		color:#007AFF;
+		text-decoration: none;
+	}
+	border: 4px solid #2F2F2F;
+	.box-shadow(0px 0px 6px #000000);
+	.message{
+		padding:10px 20px;
+		p{
+			padding-top:10px;
+		}
+	}
+	.contents {
+		padding:0 20px 10px 20px;
+	}
+	.actions{
+		padding:10px;
+		text-align:center;
+		margin-bottom: 10px;
+		label {
+			display:inline;
+			margin-right:10px;
+		}
+		border-top: 1px solid #C0C0C0;
+		input {
+			width:inherit;
+		}
+	}
+	.title {
+		position:relative;
+		font-size:18px;
+		margin: 0;
+		font-weight: normal;
+		color: #fff;
+		padding:10px 15px 15px 20px;
+		background: #414141 url(../../../css/onethird121.png) no-repeat right -1px;
+		background-size:40px;
+		background-image: none\9;
+		&:before {
+			content:' ';
+			position: absolute;
+			top:-3px;
+			left:1px;
+			height:95%;
+			width:8px;
+			background: #B55900;
+		}
+	}
+}
+
+.onethird-article-image {
+    max-width: 100%;
+}
